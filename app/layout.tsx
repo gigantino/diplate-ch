@@ -12,6 +12,10 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+export const metadata: Metadata = {
+  title: "diplate.ch",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
