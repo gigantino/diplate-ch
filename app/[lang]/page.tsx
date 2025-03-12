@@ -17,10 +17,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     notFound();
   }
 
+  const title = getRawTranslation(lang, "title");
   const description = getRawTranslation(lang, "description");
 
   return {
-    title: "diplate.ch",
+    title,
     description,
   };
 }
