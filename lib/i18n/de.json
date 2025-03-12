@@ -30,6 +30,7 @@
   "diplomatic-entity-UN_MISSION": "UN-Mission",
   "diplomatic-entity-INT_ORG": "Internationale Organisation",
   "diplomatic-entity-COUNTRY": "Land",
+  "serial-number-tooltip": "Seriennummern dienen ausschließlich zur Unterscheidung von Individuen. Niedrigere Seriennummern werden Botschaftern, Leitern von Organisationen und deren Stellvertretern zugewiesen.",
   "canton-ZH": "Zürich",
   "canton-BE": "Bern",
   "canton-LU": "Luzern",

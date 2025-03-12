@@ -30,6 +30,7 @@
   "diplomatic-entity-UN_MISSION": "UN Mission",
   "diplomatic-entity-INT_ORG": "International Organization",
   "diplomatic-entity-COUNTRY": "Country",
+  "serial-number-tooltip": "Serial numbers serve solely to differentiate individuals. Lower serial numbers are designated for ambassadors, heads of organizations, and their deputies.",
   "canton-ZH": "Zurich",
   "canton-BE": "Bern",
   "canton-LU": "Lucerne",

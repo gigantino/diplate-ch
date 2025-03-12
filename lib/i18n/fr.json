@@ -30,6 +30,7 @@
   "diplomatic-entity-UN_MISSION": "Mission de l'ONU",
   "diplomatic-entity-INT_ORG": "Organisation Internationale",
   "diplomatic-entity-COUNTRY": "Pays",
+  "serial-number-tooltip": "Les numéros de série servent uniquement à différencier les individus. Les numéros de série les plus bas sont attribués aux ambassadeurs, aux chefs d'organisations et à leurs adjoints.",
   "canton-ZH": "Zurich",
   "canton-BE": "Berne",
   "canton-LU": "Lucerne",

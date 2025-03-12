@@ -33,11 +33,30 @@ export default function PlateTranslator({ lang }: { lang: Lang }) {
     useState<null | DiplomaticEntity>(null);
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
+  const [isTooltipVisible, setIsTooltipVisible] = useState(false);
 
   useEffect(() => {
     setDiplomaticEntity(getDiplomaticEntity(lang, subNumber));
     setIsLoading(false);
   }, [subNumber, lang]);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        isTooltipVisible &&
+        !(event.target as Element).closest(
+          'button[aria-label="More information"]'
+        )
+      ) {
+        setIsTooltipVisible(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isTooltipVisible]);
 
   return (
     <>
@@ -102,13 +121,32 @@ export default function PlateTranslator({ lang }: { lang: Lang }) {
                     <Label htmlFor="serial_number">
                       {getRawTranslation(lang, "serial_number")}
                     </Label>
-                    <Input
-                      id="serial_number"
-                      value={number}
-                      onChange={(e) => setNumber(e.target.value)}
-                      maxLength={4}
-                      placeholder="123"
-                    />
+                    <div className="relative">
+                      <Input
+                        id="serial_number"
+                        value={number}
+                        onChange={(e) => setNumber(e.target.value)}
+                        maxLength={4}
+                        placeholder="123"
+                        disabled
+                        className="pr-10"
+                      />
+                      <div className="absolute inset-y-0 right-0 flex items-center pr-3">
+                        <button
+                          type="button"
+                          onClick={() => setIsTooltipVisible(!isTooltipVisible)}
+                          className="flex h-5 w-5 items-center justify-center rounded-full bg-gray-200 text-gray-500 text-xs font-bold focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+                        >
+                          ?
+                        </button>
+                        {isTooltipVisible && (
+                          <div className="absolute bottom-full right-0 mb-2 w-48 p-2 bg-black text-white text-xs rounded shadow-lg z-10">
+                            {getRawTranslation(lang, "serial-number-tooltip")}
+                            <div className="absolute top-full right-3 -mt-1 w-2 h-2 rotate-45 bg-black"></div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
                   </div>
                   <div>
                     <Label htmlFor="identification_number">
@@ -116,12 +154,18 @@ export default function PlateTranslator({ lang }: { lang: Lang }) {
                     </Label>
                     <Input
                       id="identification_number"
+                      type="number"
                       value={subNumber}
                       onChange={(e) => {
-                        setSubNumber(e.target.value);
+                        const value = e.target.value;
+                        if (/^\d*$/.test(value)) {
+                          setSubNumber(value);
+                        }
                       }}
+                      min="0"
+                      max="999"
                       maxLength={3}
-                      placeholder="45"
+                      placeholder="07"
                     />
                   </div>
                 </div>
