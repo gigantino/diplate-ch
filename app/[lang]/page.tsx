@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const description = getRawTranslation(lang, "description");
 
   return {
-    title: "displate.ch",
+    title: "diplate.ch",
     description,
   };
 }
