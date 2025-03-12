@@ -28,7 +28,7 @@ export default function PlateTranslator({ lang }: { lang: Lang }) {
   const [plateType, setPlateType] = useState<PlateType>("CD_GREEN");
   const [canton, setCanton] = useState("GE");
   const [number, setNumber] = useState("123");
-  const [subNumber, setSubNumber] = useState("45");
+  const [subNumber, setSubNumber] = useState("07");
   const [diplomaticEntity, setDiplomaticEntity] =
     useState<null | DiplomaticEntity>(null);
   const router = useRouter();
