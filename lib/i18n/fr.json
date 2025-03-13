@@ -25,7 +25,7 @@
   "info-CD_BLUE-0": "Véhicules des missions permanentes ou d'autres représentations auprès d'organisations intergouvernementales, ainsi que véhicules à moteur pour les membres du personnel diplomatique de ces missions.",
   "info-CD_BLUE-1": "Véhicules de bénéficiaires institutionnels tels que les organisations intergouvernementales, les institutions internationales, les secrétariats ou autres organes créés en vertu d'un traité international, les commissions indépendantes, les cours internationales, les tribunaux arbitraux et autres organes internationaux, bénéficiant de privilèges, d'immunités et de facilités, ainsi que les véhicules à moteur des fonctionnaires de rang le plus élevé de ces bénéficiaires institutionnels, qui jouissent d'un statut diplomatique en Suisse.",
   "info-AT_GREEN-0": "Véhicules appartenant aux membres du personnel administratif et technique des missions diplomatiques.",
-  "unknown": "inconnue",
+  "unknown": "Inconnue",
   "license": "Licence MIT",
   "diplomatic_entity_type": "Type d'entité diplomatique",
   "diplomatic-entity-UN_MISSION": "Mission de l'ONU",

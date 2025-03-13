@@ -25,7 +25,7 @@
   "info-CD_BLUE-0": "Fahrzeuge ständiger Missionen oder anderer Vertretungen bei zwischenstaatlichen Organisationen sowie Kraftfahrzeuge für die Mitglieder des diplomatischen Personals dieser Missionen.",
   "info-CD_BLUE-1": "Fahrzeuge institutioneller Begünstigter wie zwischenstaatliche Organisationen, internationale Institutionen, Sekretariate oder andere Gremien, die aufgrund eines internationalen Vertrags gegründet wurden, unabhängige Kommissionen, internationale Gerichte, Schiedsgerichte und andere internationale Gremien, die Privilegien, Immunitäten und Erleichterungen genießen, sowie die Kraftfahrzeuge der ranghöchsten Beamten dieser institutionellen Begünstigten, die in der Schweiz diplomatischen Status genießen.",
   "info-AT_GREEN-0": "Fahrzeuge, die den Mitgliedern des Verwaltungs- und Technischen Personals von diplomatischen Missionen gehören.",
-  "unknown": "unbekannt",
+  "unknown": "Unbekannt",
   "license": "MIT-Lizenz",
   "diplomatic_entity_type": "Art der diplomatischen Einheit",
   "diplomatic-entity-UN_MISSION": "UN-Mission",
