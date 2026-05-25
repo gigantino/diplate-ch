@@ -1,19 +1,24 @@
-# displate.ch
+# diplate
 
-Get info about diplomatic license plates in Switzerland.
+Decode Swiss diplomatic license plates. Enter a plate's type, canton and
+identification number and the app tells you which country, international
+organization or UN mission the vehicle belongs to. Available in English,
+German, French and Italian.
 
-## Getting Started
+Live at [diplate.ggtn.ch](https://diplate.ggtn.ch).
 
-First, run the development server:
+## Getting started
+
+Install dependencies and run the development server:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
+bun install
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000); you'll be redirected to the
+locale matching your browser's `Accept-Language` header.
+
+## License
+
+See [LICENSE](./LICENSE).

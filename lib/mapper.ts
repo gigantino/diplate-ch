@@ -6,6 +6,11 @@ import { intOrgCodes, unMissionsCodes } from "./diplomaticCodes";
 
 export type PlateType = "CD_GREEN" | "CC_GREEN" | "CD_BLUE" | "AT_GREEN";
 export type Lang = "en" | "de" | "fr" | "it";
+export const LANGS = ["en", "de", "fr", "it"] as const;
+
+export function isLang(value: string): value is Lang {
+  return (LANGS as readonly string[]).includes(value);
+}
 
 const translationsMap: Record<Lang, Record<string, string>> = {
   en,
@@ -14,30 +19,12 @@ const translationsMap: Record<Lang, Record<string, string>> = {
   it,
 };
 
-export function getPlateDescription(
-  lang: Lang,
-  plateType: PlateType
-): string[] {
-  const translations = translationsMap[lang];
-
-  const prefix = `info-${plateType}-`;
-
-  const keys = Object.keys(translations)
-    .filter((key) => key.startsWith(prefix))
-    .sort((a, b) => {
-      const aIndex = parseInt(a.slice(prefix.length), 10);
-      const bIndex = parseInt(b.slice(prefix.length), 10);
-      return aIndex - bIndex;
-    });
-
-  return keys.map((key) => translations[key]);
-}
-
 export function getCantonCodes(lang: Lang): string[] {
   const translations = translationsMap[lang];
+  const prefix = "canton-";
   return Object.keys(translations)
-    .filter((key) => key.startsWith("canton-"))
-    .map((key) => key.slice(-2));
+    .filter((key) => key.startsWith(prefix))
+    .map((key) => key.slice(prefix.length));
 }
 
 export function getRawTranslation(lang: Lang, key: string) {
@@ -75,10 +62,10 @@ export function getDiplomaticEntity(
     return { type: "COUNTRY", value: translations[fullKey] };
   }
 
-  if (code.startsWith("3") || code.startsWith("5")) {
+  if (code.length === 3 && (code.startsWith("3") || code.startsWith("5"))) {
     const patternKey = `code-${code[0]}xx`;
     if (intOrgCodes[patternKey]) {
-      let intOrg = intOrgCodes[patternKey];
+      const intOrg = intOrgCodes[patternKey];
       let countryCode = code.slice(1);
       if (countryCode.startsWith("0")) {
         countryCode = countryCode.slice(1);

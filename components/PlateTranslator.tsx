@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import type React from "react";
 
 import { useRouter } from "next/navigation";
@@ -30,31 +30,22 @@ import {
   getRawTranslation,
   type Lang,
   type PlateType,
-  type DiplomaticEntity,
 } from "@/lib/mapper";
 
 export default function PlateTranslator({ lang }: { lang: Lang }) {
   const [plateType, setPlateType] = useState<PlateType>("CD_GREEN");
   const [canton, setCanton] = useState("GE");
-  const [number, setNumber] = useState("123");
+  const serialNumber = "123";
   const [subNumber, setSubNumber] = useState("07");
-  const [diplomaticEntity, setDiplomaticEntity] =
-    useState<null | DiplomaticEntity>(null);
+  const diplomaticEntity = getDiplomaticEntity(lang, subNumber);
   const router = useRouter();
-  const [isLoading, setIsLoading] = useState(true);
   const [isTooltipVisible, setIsTooltipVisible] = useState(false);
   const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  // Ensure theme component doesn't render until mounted on client
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  useEffect(() => {
-    setDiplomaticEntity(getDiplomaticEntity(lang, subNumber));
-    setIsLoading(false);
-  }, [subNumber, lang]);
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  );
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -89,11 +80,8 @@ export default function PlateTranslator({ lang }: { lang: Lang }) {
   }
 
   return (
-    !isLoading && (
       <div className="space-y-8">
         <Card className="p-6 dark:bg-black/90">
-          <div></div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-4">
               <div>
@@ -105,7 +93,7 @@ export default function PlateTranslator({ lang }: { lang: Lang }) {
                   onValueChange={(value) => setPlateType(value as PlateType)}
                 >
                   <SelectTrigger id="plate-type" className="w-full">
-                    <SelectValue placeholder="Select plate type" />
+                    <SelectValue placeholder={getRawTranslation(lang, "plate_type")} />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="CD_GREEN">
@@ -133,7 +121,7 @@ export default function PlateTranslator({ lang }: { lang: Lang }) {
                   onValueChange={(value) => setCanton(value)}
                 >
                   <SelectTrigger id="canton" className="w-full">
-                    <SelectValue placeholder="Select canton" />
+                    <SelectValue placeholder={getRawTranslation(lang, "canton")} />
                   </SelectTrigger>
                   <SelectContent>
                     {getCantonCodes(lang).map((code) => (
@@ -153,10 +141,8 @@ export default function PlateTranslator({ lang }: { lang: Lang }) {
                   <div className="relative">
                     <Input
                       id="serial_number"
-                      value={number}
-                      onChange={(e) => setNumber(e.target.value)}
-                      maxLength={4}
-                      placeholder="123"
+                      value={serialNumber}
+                      readOnly
                       disabled
                       className="pr-10"
                     />
@@ -217,7 +203,7 @@ export default function PlateTranslator({ lang }: { lang: Lang }) {
 
                     <div className="bg-gray-100 p-4 flex items-center justify-center w-3/4">
                       <span className="text-3xl font-bold tracking-wider text-black">
-                        {canton} {number}
+                        {canton} {serialNumber}
                         <span className="mx-1">•</span>
                         {subNumber}
                       </span>
@@ -320,7 +306,7 @@ export default function PlateTranslator({ lang }: { lang: Lang }) {
         <footer className="text-center py-4 border-t dark:border-neutral-800">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="text-sm text-gray-500 dark:text-gray-400">
-              &copy; {new Date().getFullYear()} diplate.ch |{" "}
+              &copy; {new Date().getFullYear()} diplate |{" "}
               {getRawTranslation(lang, "license")}
             </div>
             <div className="flex items-center gap-4">
@@ -370,7 +356,7 @@ export default function PlateTranslator({ lang }: { lang: Lang }) {
                   <SelectTrigger className="w-[140px]">
                     <div className="flex items-center gap-2">
                       <Globe className="h-4 w-4" />
-                      <SelectValue placeholder="Language" />
+                      <SelectValue placeholder={getRawTranslation(lang, "language")} />
                     </div>
                   </SelectTrigger>
                   <SelectContent>
@@ -393,6 +379,5 @@ export default function PlateTranslator({ lang }: { lang: Lang }) {
           </div>
         </footer>
       </div>
-    )
   );
 }

@@ -199,10 +199,7 @@ export const unMissionsCodes: Record<
     code: "OSCE",
     url: "https://en.wikipedia.org/wiki/Organization_for_Security_and_Co-operation_in_Europe",
   },
-  "code-033": {
-    code: "WMO",
-    url: "https://en.wikipedia.org/wiki/World_Migration_Organization",
-  },
+  // code-033 is omitted because the previously listed organization could not be verified.
   "code-035": {
     code: "GFATM",
     url: "https://en.wikipedia.org/wiki/The_Global_Fund_to_Fight_AIDS,_Tuberculosis_and_Malaria",
